@@ -7,7 +7,7 @@ module multiplier_16bit(multiplicand, multiplier, product);
   output reg [31:0] product;
   integer i;
 
-  assign multiplicand_ext = {16'd0, multiplicand}; //not requared
+  assign multiplicand_ext = {16'd0, multiplicand}; //not required
 
 
   always@*
