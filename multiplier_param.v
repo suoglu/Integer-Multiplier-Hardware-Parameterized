@@ -9,7 +9,7 @@ module multiplier_parameterized(multiplicand, multiplier, product);
   output reg [((2*bit)-1):0] product;
   integer i;
 
-  assign multiplicand_ext = {{bit{0}}, multiplicand}; //not requared
+  assign multiplicand_ext = {{bit{1'b0}}, multiplicand}; //not requared
 
 
   always@*
