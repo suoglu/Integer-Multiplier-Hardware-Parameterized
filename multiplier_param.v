@@ -4,8 +4,8 @@
 module multiplier_parameterized(multiplicand, multiplier, product);
   parameter bit = 16; //default is 16, change this line for different sizes
   input [(bit -1):0] multiplicand, multiplier;
-  reg [((2*bit)-1):0] mid[(bit -1):0];
-  wire [((2*bit)-1):0] multiplicand_ext;
+  reg [((2*bit)-1):0] mid[(bit -1):0]; //holds shifted values
+  wire [((2*bit)-1):0] multiplicand_ext; //multiplicand extended to 2 * bit
   output reg [((2*bit)-1):0] product;
   integer i;
 
@@ -15,17 +15,17 @@ module multiplier_parameterized(multiplicand, multiplier, product);
   always@*
     begin
       mid[0] = multiplicand_ext & {(2*bit){multiplier[0]}};
-      for(i = 1; i <  bit; i = i + 1)
+      //Shifting
+      for(i = 1; i < bit; i = i + 1)
         begin
           mid[i] = (multiplicand_ext << i )& {(2*bit){multiplier[i]}};
         end
-     product = mid[0];
-         for(i = 1; i < bit; i = i + 1)
+      
+      //Adding shifted valuess
+      product = mid[0];
+      for(i = 1; i < bit; i = i + 1)
          begin
             product = product + mid[i];
          end         
     end
-
-
-
 endmodule // multiplier_parameterized
