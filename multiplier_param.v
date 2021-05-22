@@ -1,8 +1,7 @@
   //Yigit Suoglu
  //pure combinational parameterized multiplier
 //Adjust parameter "bit" as bit size of inputs, product will be 2*bit
-module multiplier_parameterized(multiplicand, multiplier, product);
-  parameter bit = 16; //default is 16, change this line for different sizes
+module multiplier_parameterized#(parameter bit = 16)(multiplicand, multiplier, product);
   input [(bit -1):0] multiplicand, multiplier;
   reg [((2*bit)-1):0] mid[(bit -1):0]; //holds shifted values
   wire [((2*bit)-1):0] multiplicand_ext; //multiplicand extended to 2 * bit
